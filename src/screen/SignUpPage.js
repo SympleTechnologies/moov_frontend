@@ -99,6 +99,7 @@ class SignUpPage extends React.Component {
 				"firstname": this.state.firstName,
 				"lastname": this.state.lastName,
 				"email": this.state.email,
+				"user_type": "student",
 			}
 						)
 			.then(this.createUserOnFirebase)
