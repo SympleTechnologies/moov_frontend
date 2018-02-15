@@ -5,7 +5,7 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
 // screens
-import { LandingPage, SignUpPage, LoginPage } from './src/screen';
+import { LandingPage, SignUpPage, LoginPage, MoovPages } from './src/screen';
 
 export default MainStack = StackNavigator({
 	LandingPage: {
@@ -22,6 +22,12 @@ export default MainStack = StackNavigator({
 	},
 	LoginPage: {
 		screen: LoginPage,
+		navigationOptions: {
+			header: null,
+		}
+	},
+	MoovPages: {
+		screen: MoovPages,
 		navigationOptions: {
 			header: null,
 		}
