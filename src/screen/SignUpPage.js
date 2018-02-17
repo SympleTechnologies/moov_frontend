@@ -71,7 +71,6 @@ class SignUpPage extends React.Component {
 				if (user && user.emailVerified === false) {
 					user.sendEmailVerification()
 						.then((response) => {
-							console.log(response);
 							this.setState({ loading: !this.state.loading });
 							navigate('MoovPages');
 						})
@@ -104,9 +103,6 @@ class SignUpPage extends React.Component {
 						)
 			.then(this.createUserOnFirebase)
 			.catch((error) => {
-				console.log(error.response.data.data);
-				console.log(error.data);
-				console.log(error.message);
 				this.setState({ loading: !this.state.loading, errorMessage: error.response.data.data.message })
 			});
 	};
