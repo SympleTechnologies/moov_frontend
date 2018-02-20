@@ -2,7 +2,7 @@
 	import React from 'react';
 
 	// react-native libraries
-	import { StyleSheet, View, ActivityIndicator } from 'react-native';
+	import {StyleSheet, View, ActivityIndicator, AsyncStorage} from 'react-native';
 
 	// third-part libraries
 	import firebase from 'firebase';
@@ -101,34 +101,51 @@
 					"user_type": "student",
 				}
 							)
-				.then(this.createUserOnFirebase)
+				.then((response) => {
+					this.signUpSuccess(response)
+          this.createUserOnFirebase();
+				})
 				.catch((error) => {
-
 					this.setState({ loading: !this.state.loading, errorMessage: error.response.data.data.message })
 					this.deleteUser();
 				});
 		};
 
+
+    /**
+     * onLoginSuccess
+     *
+     * Navigates user to MoovPage
+     * @return {void}
+     */
+    signUpSuccess (response) {
+      AsyncStorage.setItem("token", response.data.data.token);
+    };
+
     /**
 		 * deleteUser
-		 *
+		 * 
 		 * deletes already created user on the server
 		 * @return {void}
      */
 		deleteUser = () => {
-			axios.delete('https://moov-backend-staging.herokuapp.com/api/v1/user',
-				{
-					"firstname": this.state.firstName,
-					"lastname": this.state.lastName,
-					"email": this.state.email,
-					"user_type": "student",
-				}
-			)
-				.then(this.createUserOnFirebase)
-				.catch((error) => {
-					this.setState({ loading: !this.state.loading, errorMessage: error.response.data.data.message })
-				});
-		}
+      axios.delete('https://moov-backend-staging.herokuapp.com/api/v1/user',
+        {
+          headers: {
+            'Authorization': `Bearer ${this.state.userToken}`,
+          }
+        },
+        {
+          "email": this.state.email,
+        }
+      )
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          // this.setState({ loading: !this.state.loading, errorMessage: error.response.data.data.message })
+        });
+		};
 
 		/**
 		 * createUserOnFirebase
@@ -140,7 +157,8 @@
 					this.setState({
 						errorMessage: error.message,
 						loading: !this.state.loading
-					})
+					});
+					this.deleteUser();
 				})
 		};
 

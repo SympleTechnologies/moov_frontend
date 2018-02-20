@@ -7,7 +7,7 @@ import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 class MoovPages extends React.Component {
 	state= {
 		userToken: '',
-	}
+	};
 	
 	/**
 	 * componentDidMount
@@ -16,13 +16,13 @@ class MoovPages extends React.Component {
 	 * @return {void}
 	 */
 	componentDidMount() {
-		AsyncStorage.getItem("myKey").then((value) => {
+		AsyncStorage.getItem("token").then((value) => {
 			this.setState({ userToken: value });
 		}).done();
 	}
 	
 	render() {
-		console.log(this.state)
+		console.log(this.state);
 		return (
 			<View style={styles.container}>
 				<Text>Moov Pages</Text>
