@@ -14,12 +14,12 @@ export default MainStack = StackNavigator({
 	// 		header: null,
 	// 	}
 	// },
-	// SignUpPage: {
-	// 	screen: SignUpPage,
-	// 	navigationOptions: {
-	// 		header: null,
-	// 	}
-	// },
+	SignUpPage: {
+		screen: SignUpPage,
+		navigationOptions: {
+			header: null,
+		}
+	},
 	LoginPage: {
 		screen: LoginPage,
 		navigationOptions: {

@@ -46,25 +46,6 @@ class LoginPage extends React.Component {
 	}
 	
 	/**
-	 * onSubmit
-	 *
-	 * Submits form to firebase database
-	 * @return {void}
-	 */
-	onSubmit = () => {
-		if(this.validateFields()) {
-			this.setState({ errorMessage: '' })
-			this.setState({ loading: !this.state.loading, errorMessage: '' });
-			firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-				.then(this.signInOnServer)
-				.catch((error) => {
-					this.setState({ errorMessage: error.message, loading: !this.state.loading })
-				});
-		}
-		
-	};
-	
-	/**
 	 * signInOnServer
 	 *
 	 * signs user in on our web server
@@ -96,6 +77,25 @@ class LoginPage extends React.Component {
 		this.setState({ loading: !this.state.loading });
 		navigate('MoovPages');
 	};
+
+    /**
+     * onSubmit
+     *
+     * Submits form to firebase database
+     * @return {void}
+     */
+    onSubmit = () => {
+        if(this.validateFields()) {
+            this.setState({ errorMessage: '' })
+            this.setState({ loading: !this.state.loading, errorMessage: '' });
+            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+                .then(this.signInOnServer)
+                .catch((error) => {
+                    this.setState({ errorMessage: error.message, loading: !this.state.loading })
+                });
+        }
+
+    };
 	
 	/**
 	 * validateFields
