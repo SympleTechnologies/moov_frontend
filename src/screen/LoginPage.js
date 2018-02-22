@@ -153,7 +153,7 @@ class LoginPage extends React.Component {
 					rightIconColor='#fff'
 					centerTextColor='#fff'
 					onLeftPress={() => { this.props.navigation.dispatch(resetAction); }}
-					onRightPress={() => { const { navigate } = this.props.navigation; navigate('SignupPage'); }}
+					onRightPress={() => { const { navigate } = this.props.navigation; navigate('SignUpPage'); }}
 					iconName ='md-person-add'
 					iconType ='ionicon'
 				/>

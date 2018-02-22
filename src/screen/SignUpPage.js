@@ -29,6 +29,7 @@
 				autoFocus: false,
 				firstName: '',
 				lastName: '',
+				userToken: '',
 			};
 		}
 
@@ -102,12 +103,11 @@
 				}
 							)
 				.then((response) => {
-					this.signUpSuccess(response)
+					this.signUpSuccess(response);
           this.createUserOnFirebase();
 				})
 				.catch((error) => {
-					this.setState({ loading: !this.state.loading, errorMessage: error.response.data.data.message })
-					this.deleteUser();
+					this.setState({ loading: !this.state.loading, errorMessage: error.response.data.data.message });
 				});
 		};
 
@@ -120,6 +120,7 @@
      */
     signUpSuccess (response) {
       AsyncStorage.setItem("token", response.data.data.token);
+      this.setState({ userToken: response.data.data.token})
     };
 
     /**
@@ -129,21 +130,22 @@
 		 * @return {void}
      */
 		deleteUser = () => {
-      axios.delete('https://moov-backend-staging.herokuapp.com/api/v1/user',
-        {
-          headers: {
-            'Authorization': `Bearer ${this.state.userToken}`,
-          }
+      axios.delete(`https://moov-backend-staging.herokuapp.com/api/v1/user`, {
+        headers: {
+          'Authorization': `Bearer ${this.state.userToken}`,
+          'Content-Type': 'application/json'
         },
-        {
-          "email": this.state.email,
+        data: {
+          "email": this.state.email
         }
-      )
+      })
         .then((response) => {
-          console.log(response)
+          console.log(response);
+          console.log('Success');
         })
         .catch((error) => {
-          // this.setState({ loading: !this.state.loading, errorMessage: error.response.data.data.message })
+          console.log(error.response);
+          console.log('Failed');
         });
 		};
 
@@ -154,11 +156,11 @@
 			firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
 				.then(this.onFirebaseSuccess)
 				.catch((error) => {
+          this.deleteUser();
 					this.setState({
 						errorMessage: error.message,
 						loading: !this.state.loading
 					});
-					this.deleteUser();
 				})
 		};
 
