@@ -71,7 +71,7 @@
 				if (user) {
 					if (user && user.emailVerified === false) {
 						user.sendEmailVerification()
-							.then((response) => {
+							.then(() => {
 								this.setState({ loading: !this.state.loading });
 								navigate('MoovPages');
 							})
@@ -104,7 +104,6 @@
 							)
 				.then((response) => {
 					this.signUpSuccess(response);
-          this.createUserOnFirebase();
 				})
 				.catch((error) => {
 					this.setState({ loading: !this.state.loading, errorMessage: error.response.data.data.message });
@@ -121,6 +120,7 @@
     signUpSuccess (response) {
       AsyncStorage.setItem("token", response.data.data.token);
       this.setState({ userToken: response.data.data.token})
+      this.createUserOnFirebase();
     };
 
     /**
@@ -182,8 +182,8 @@
 		 */
 		validateFields = () => {
 			let hasNumber = /\d/;
-			var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-			var format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+			let pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+			let format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
 
 			if ( this.state.firstName === '') {
 				this.setState({ errorMessage: 'First Name field cannot be empty' })
