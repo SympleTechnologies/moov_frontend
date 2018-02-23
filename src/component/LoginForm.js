@@ -45,6 +45,7 @@ const LoginForm =
 							errorMessage={errorMessage}
 						/>
 						<Input
+              onSubmitEditing={onSubmitEditing}
 							label='Password'
 							secureTextEntry={true}
 							placeholder='********'

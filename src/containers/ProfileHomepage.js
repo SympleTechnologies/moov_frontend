@@ -2,7 +2,16 @@
 import React from 'react';
 
 // react-native libraries
-import { StyleSheet, View, AsyncStorage, Dimensions, Platform, ImageBackground, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  AsyncStorage,
+  Dimensions,
+  Platform,
+  ImageBackground,
+  TouchableOpacity,
+  Keyboard
+} from 'react-native';
 
 // third-party libraries
 import { Avatar, Card, ListItem } from 'react-native-elements'
@@ -33,6 +42,11 @@ class ProfileHomepage extends React.Component {
       this.setState({ userToken: value });
       this.getUser(value);
     }).done();
+    Keyboard.dismiss()
+  }
+
+  componentDidMount() {
+    Keyboard.dismiss();
   }
 
   /**
@@ -66,7 +80,7 @@ class ProfileHomepage extends React.Component {
   };
 
   render() {
-    console.log(this.state)
+    Keyboard.dismiss();
     let { height, width } = Dimensions.get('window');
     let name = 'Loading.........';
     let image = 'https://media-exp2.licdn.com/mpr/mpr/shrinknp_400_400/AAMABADGAAwAAQAAAAAAAAnZAAAAJDExOGE5NWVlLTA3MWMtNDk2Ni1iOTdlLTU0NjZmOWM2YTEyMQ.jpg'

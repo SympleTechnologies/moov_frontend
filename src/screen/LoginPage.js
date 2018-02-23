@@ -2,7 +2,7 @@
 import React from 'react';
 
 // react-native libraries
-import { StyleSheet, View, ActivityIndicator, AsyncStorage } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, AsyncStorage, Keyboard } from 'react-native';
 
 // third-party libraries
 import firebase from "firebase";
@@ -86,6 +86,7 @@ class LoginPage extends React.Component {
      * @return {void}
      */
     onSubmit = () => {
+      Keyboard.dismiss();
         if(this.validateFields()) {
             this.setState({ errorMessage: '' });
             this.setState({ loading: !this.state.loading, errorMessage: '' });
@@ -139,6 +140,14 @@ class LoginPage extends React.Component {
       this.setState({ errorMessage: error.message, loading: !this.state.loading })
     });
 	};
+
+  /**
+   *
+   */
+  onSubmitEditing = () => {
+    Keyboard.dismiss();
+    console.log(this.state, 'I was called');
+  };
 	
 	render() {
 		const { container, activityIndicator } = styles;
@@ -179,6 +188,7 @@ class LoginPage extends React.Component {
 				/>
 				<View style={container}>
 					<LoginForm
+            onSubmitEditing={this.onSubmitEditing}
 						emailValue={this.state.email}
 						errorMessage={this.state.errorMessage}
 						onChangeEmailText={email => this.setState({ email })}

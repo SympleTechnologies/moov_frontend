@@ -2,7 +2,7 @@
 	import React from 'react';
 
 	// react-native libraries
-	import {StyleSheet, View, ActivityIndicator, AsyncStorage} from 'react-native';
+	import {StyleSheet, View, ActivityIndicator, AsyncStorage, Keyboard} from 'react-native';
 
 	// third-part libraries
 	import firebase from 'firebase';
@@ -56,6 +56,7 @@
 		 *
 		 */
 		onSubmitEditing = () => {
+      Keyboard.dismiss();
 			console.log(this.state, 'I was called');
 		};
 
