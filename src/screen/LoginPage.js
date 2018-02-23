@@ -8,6 +8,7 @@ import { StyleSheet, View, ActivityIndicator, AsyncStorage } from 'react-native'
 import firebase from "firebase";
 import { NavigationActions } from 'react-navigation';
 import * as axios from 'axios';
+import Toast from 'react-native-simple-toast';
 
 // component
 import { LoginForm } from "../component";
@@ -86,7 +87,7 @@ class LoginPage extends React.Component {
      */
     onSubmit = () => {
         if(this.validateFields()) {
-            this.setState({ errorMessage: '' })
+            this.setState({ errorMessage: '' });
             this.setState({ loading: !this.state.loading, errorMessage: '' });
             firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
                 .then(this.signInOnServer)
@@ -104,7 +105,7 @@ class LoginPage extends React.Component {
 	 * @return {boolean}
 	 */
 	validateFields = () => {
-		var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+		let pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 		
 		if ( this.state.email === '') {
 			this.setState({ errorMessage: 'Email field cannot be empty' })
@@ -118,6 +119,25 @@ class LoginPage extends React.Component {
 			return true
 		}
 		
+	};
+
+  /**
+	 * forgotPassword
+	 *
+	 * Resets user password by send reset email to user
+	 * @return {void}
+   */
+	forgotPassword = () => {
+    this.setState({ loading: !this.state.loading });
+    let auth = firebase.auth();
+    auth.sendPasswordResetEmail(this.state.email).then(() => {
+      // Email sent.
+      this.setState({ loading: !this.state.loading });
+      Toast.show('Password reset email sent successfully.', Toast.LONG);
+    }).catch((error) => {
+      // An error happened.
+      this.setState({ errorMessage: error.message, loading: !this.state.loading })
+    });
 	};
 	
 	render() {
@@ -169,6 +189,7 @@ class LoginPage extends React.Component {
 						buttonIconType='entypo'
 						buttonText='Login'
 						requester='Login'
+						forgotPassword={() =>  this.forgotPassword()}
 					/>
 				</View>
 			</View>

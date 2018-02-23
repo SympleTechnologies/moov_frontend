@@ -2,7 +2,7 @@
 import React from 'react';
 
 // react-native libraries
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, Text } from 'react-native';
 
 // third-party libraries
 import { FormValidationMessage } from 'react-native-elements'
@@ -24,6 +24,7 @@ const LoginForm =
 		 errorMessage,
 		 onSubmitEditing,
 		 autoFocus2,
+     forgotPassword
 	 }) => {
 		const { container, form } = styles;
 		let { height, width } = Dimensions.get('window');
@@ -64,6 +65,11 @@ const LoginForm =
 							iconType={iconType}
 							backgroundColor='#004a80'
 						/>
+						<Text
+							style={{ paddingTop: 15, textAlign: 'center', color: '#004a80' }}
+							onPress={forgotPassword}
+						>
+							Forgot Password</Text>
 					</View>
 				</View>
 			</View>
