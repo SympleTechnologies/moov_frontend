@@ -83,7 +83,7 @@ class ProfileHomepage extends React.Component {
     Keyboard.dismiss();
     let { height, width } = Dimensions.get('window');
     let name = 'Loading.........';
-    let image = 'https://media-exp2.licdn.com/mpr/mpr/shrinknp_400_400/AAMABADGAAwAAQAAAAAAAAnZAAAAJDExOGE5NWVlLTA3MWMtNDk2Ni1iOTdlLTU0NjZmOWM2YTEyMQ.jpg'
+    let image = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973461_1280.png'
 
     if(this.state.firstName !== ''){
       name =

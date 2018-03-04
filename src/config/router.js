@@ -13,7 +13,7 @@ export const MooveHome = StackNavigator({
     screen: MoovHomepage,
     navigationOptions: {
       header: null,
-    }
+    },
   },
 }, {
   navigationOptions: {
@@ -94,28 +94,48 @@ export const Tabs = TabNavigator({
   		style: {
   			color: '#004a80',
   		},
-  		tabBarIcon: <Icon name="ios-car-outline" type="ionicon" color="white" />,
+  		tabBarIcon: ({ focused }) => (
+  		  focused
+        ? <Icon name="ios-car-outline" type="ionicon" color="#004a80" />
+          : <Icon name="ios-car-outline" type="ionicon" color="white" />
+      ),
+  		// tabBarIcon: <Icon name="ios-car-outline" type="ionicon" color="white" />,
   	},
   },
   Wallet: {
   	screen: WalletHome,
   	navigationOptions: {
   		tabBarLabel: 'Wallet',
-  		tabBarIcon: <Icon name="credit-card-plus" type="material-community" color="white" />,
+      tabBarIcon: ({ focused }) => (
+        focused
+          ? <Icon name="credit-card-plus" type="material-community" color="#004a80" />
+          : <Icon name="credit-card-plus" type="material-community" color="white" />
+      ),
+  		// tabBarIcon: <Icon name="credit-card-plus" type="material-community" color="white" />,
   	},
   },
   AskUs: {
     screen: AskHome,
     navigationOptions: {
       tabBarLabel: 'Ask Us',
-      tabBarIcon: <Icon name="help" type="entypo" color="white" />,
+      tabBarIcon: ({ focused }) => (
+        focused
+          ? <Icon name="help" type="entypo" color="#004a80" />
+          : <Icon name="help" type="entypo" color="white" />
+      ),
+      // tabBarIcon: <Icon name="help" type="entypo" color="white" />,
     },
   },
   Profile: {
     screen: ProfileHome,
     navigationOptions: {
       tabBarLabel: 'Profile',
-      tabBarIcon: <Icon name="user-circle" type="font-awesome" color="white" />,
+      tabBarIcon: ({ focused }) => (
+        focused
+          ? <Icon name="user-circle" type="font-awesome" color="#004a80" />
+          : <Icon name="user-circle" type="font-awesome" color="white" />
+      ),
+      // tabBarIcon: <Icon name="user-circle" type="font-awesome" color="white" />,
     },
     style: {
       color: 'green',
@@ -123,21 +143,34 @@ export const Tabs = TabNavigator({
   },
 }, {
   // tabBarPosition: 'top',
+  // tabBarOptions: {
+  //   style: {
+  //     backgroundColor: '#E8E8E8',
+  //     padding: 2,
+  //     // marginTop: STATUS_BAR_HEIGHT
+  //   },
+  //   indicatorStyle: {
+  //     borderBottomColor: '#ffffff',
+  //     borderBottomWidth: 3,
+  //   },
+  //   tabStyle: {
+  //     // borderRightColor: '#004a80',
+  //     // borderRightWidth: 1,
+  //   },
+  //   activeTintColor: '#5EB5A9',
+  // },
   animationEnabled: true,
   tabBarOptions: {
-    style: {
-      backgroundColor: '#004a80',
-      padding: 2,
-      // marginTop: STATUS_BAR_HEIGHT
+    activeTintColor:'#004a80',
+    inactiveTintColor:'white',
+    style:{
+      backgroundColor:'grey',
+      borderTopWidth:1,
+      borderTopColor:'#D3D3D3'
     },
-    indicatorStyle: {
-      borderBottomColor: '#ffffff',
-      borderBottomWidth: 3,
+    tabBarSelectedItemStyle: {
+      borderBottomWidth: 2,
+      borderBottomColor: 'red',
     },
-    tabStyle: {
-      borderRightColor: '#004a80',
-      borderRightWidth: 1,
-    },
-    activeTintColor: 'white',
   },
 });
