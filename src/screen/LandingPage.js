@@ -75,7 +75,8 @@ class LandingPage extends React.Component {
 		const { navigate } = this.props.navigation;
 		
 		if (page === 'signup') {
-			navigate('SignUpPage');
+			navigate('firstStep');
+			// navigate('SignUpPage');
 		}
 		
 		if (page === 'login') {
@@ -97,7 +98,8 @@ class LandingPage extends React.Component {
 								alignItems: 'center',
 								height: height / 3.5,
 								width: width / 2,
-								transform: [{scale: this.springValue}]
+								transform: [{scale: this.springValue}],
+								borderRadius: 25
 							}}
 							source={require('../../assets/appLogo.png')}
 						/>
@@ -108,7 +110,7 @@ class LandingPage extends React.Component {
             <Text style={[landingPageBodyText, signInStyle, TextShadowStyle]} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>Sign In</Text>
           </TouchableOpacity>
 					<TouchableOpacity onPress={() => this.appNavigation('signup')}>
-						<Text style={[ signUpStyle]} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>New User? Sign Up Now!</Text>
+						<Text style={[ signUpStyle]} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>New to MOOV? Sign Up Now!</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -132,8 +134,8 @@ const styles = StyleSheet.create({
 	landingPageBodyText: {
 		color: '#b3b4b4',
 		fontSize: 20,
-		borderWidth: 1,
-		borderColor: '#333',
+		// borderWidth: 1,
+		// borderColor: '#333',
 		borderRadius: 15,
 		padding: 8,
 		overflow: 'hidden',
@@ -144,14 +146,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     backgroundColor: 'white',
+    textDecorationLine: 'underline',
   },
   TextShadowStyle:
     {
       textAlign: 'center',
       fontSize: 20,
-      textShadowColor: '#ed1768',
+      // textShadowColor: '#ed1768',
       textShadowOffset: { width: 1, height: 1 },
-      textShadowRadius: 5
+      textShadowRadius: 5,
 
     },
 	signUpStyle: {
