@@ -108,7 +108,7 @@ class LandingPage extends React.Component {
             <Text style={[landingPageBodyText, signInStyle, TextShadowStyle]} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>Sign In</Text>
           </TouchableOpacity>
 					<TouchableOpacity onPress={() => this.appNavigation('signup')}>
-						<Text style={[ signUpStyle]} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>New User? Sign Up</Text>
+						<Text style={[ signUpStyle]} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>New User? Sign Up Now!</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   signInStyle: {
     color: '#333',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
     backgroundColor: 'white',
   },
   TextShadowStyle:
@@ -155,8 +155,14 @@ const styles = StyleSheet.create({
 
     },
 	signUpStyle: {
-    // backgroundColor: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#333',
+    fontSize: 15,
+    borderWidth: 1,
+    borderColor: 'white',
+    overflow: 'hidden',
+    height: Dimensions.get('window').height / 10
+    // width: Dimensions.get('window').width / 3,
 	},
 });
 
