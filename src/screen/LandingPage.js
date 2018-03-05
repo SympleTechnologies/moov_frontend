@@ -84,7 +84,7 @@ class LandingPage extends React.Component {
 	};
 	
 	render() {
-		const { container, landingPageBody, landingPageBodyText } = styles;
+		const { container, landingPageBody, landingPageBodyText, signUpStyle, signInStyle, TextShadowStyle} = styles;
 		let { height, width } = Dimensions.get('window');
 		
 		return (
@@ -104,11 +104,11 @@ class LandingPage extends React.Component {
 					</TouchableOpacity>
 				</View>
 				<View style={landingPageBody}>
+          <TouchableOpacity onPress={() => this.appNavigation('login')} >
+            <Text style={[landingPageBodyText, signInStyle, TextShadowStyle]} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>Sign In</Text>
+          </TouchableOpacity>
 					<TouchableOpacity onPress={() => this.appNavigation('signup')}>
-						<Text style={landingPageBodyText} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>Sign Up</Text>
-					</TouchableOpacity>
-					<TouchableOpacity onPress={() => this.appNavigation('login')}>
-						<Text style={landingPageBodyText} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>Log In</Text>
+						<Text style={[ signUpStyle]} hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}>New User? Sign Up</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -119,24 +119,45 @@ class LandingPage extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#004a80',
+		backgroundColor: 'white',
 		justifyContent: 'center',
 		height: Dimensions.get('window').height
 	},
 	landingPageBody: {
-		flexDirection: 'row',
-		justifyContent: 'space-around',
+		flexDirection: 'column',
+		// justifyContent: 'space-between',
+		alignItems: 'center',
 		marginTop: '20%',
 	},
 	landingPageBodyText: {
-		color: 'white',
+		color: '#b3b4b4',
 		fontSize: 20,
 		borderWidth: 1,
-		borderColor: 'white',
+		borderColor: '#333',
 		borderRadius: 15,
 		padding: 8,
 		overflow: 'hidden',
-	}
+		width: Dimensions.get('window').width / 3,
+	},
+  signInStyle: {
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 10,
+    backgroundColor: 'white',
+  },
+  TextShadowStyle:
+    {
+      textAlign: 'center',
+      fontSize: 20,
+      textShadowColor: '#ed1768',
+      textShadowOffset: { width: 1, height: 1 },
+      textShadowRadius: 5
+
+    },
+	signUpStyle: {
+    // backgroundColor: 'white',
+    textAlign: 'center'
+	},
 });
 
 export { LandingPage };

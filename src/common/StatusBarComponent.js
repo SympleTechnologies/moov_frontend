@@ -7,7 +7,7 @@ import { StatusBar } from 'react-native'
 const StatusBarComponent = () => {
 	return (
 		<StatusBar
-			backgroundColor="#004a80"
+			backgroundColor="white"
 			hidden = {false}
 		/>
 	)
